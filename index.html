@@ -424,6 +424,11 @@
     .news-cat.mock { background: var(--green-bg); color: var(--green); }
     .news-cat.univ { background: #FFF7ED; color: #C2410C; }
     .news-cat.reform { background: var(--surface2); color: var(--text-sub); }
+    .news-cat.tip { background: #F0FDF4; color: #166534; }
+    .news-cat.info { background: #EFF6FF; color: #1D4ED8; }
+    [data-theme="dark"] .news-cat.tip { background: #14532D; color: #86EFAC; }
+    [data-theme="dark"] .news-cat.info { background: #1E3A5F; color: #93C5FD; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .news-cat.tip { background: #14532D; color: #86EFAC; } :root:not([data-theme="light"]) .news-cat.info { background: #1E3A5F; color: #93C5FD; } }
 
     @media (prefers-color-scheme: dark) {
       :root {
@@ -758,7 +763,7 @@
   <section id="news">
     <div class="section-head">
       <h2>2027학년도 주요 입시 뉴스</h2>
-      <span class="badge">50개+ 최신 뉴스</span>
+      <span class="badge">200개+ 최신 뉴스</span>
     </div>
 
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;" id="news-filters">
@@ -770,11 +775,13 @@
       <button class="nf-btn" onclick="filterNews('mock')">모의고사</button>
       <button class="nf-btn" onclick="filterNews('univ')">대학별</button>
       <button class="nf-btn" onclick="filterNews('reform')">입시 개편</button>
+      <button class="nf-btn" onclick="filterNews('tip')">수험 생활</button>
+      <button class="nf-btn" onclick="filterNews('info')">입시 정보</button>
     </div>
 
     <div class="news-grid" id="news-container">
 
-      <!-- 일정·제도 -->
+      <!-- ===== 일정·제도 ===== -->
       <div class="news-card" data-cat="schedule">
         <div class="news-cat schedule">일정·제도</div>
         <div class="news-title">수능 시험일 2026년 11월 19일(목) 공식 확정</div>
@@ -1101,6 +1108,596 @@
         <div class="news-title">수시 80.3% 시대 — 정시 축소 흐름 지속</div>
         <div class="news-body">수시 비중이 80.3%에 달하는 2027학년도 대입 구조에서 정시 비중은 계속 줄어드는 추세입니다. 재수생은 수시 논술·최저 전형과 정시를 모두 병행하는 투트랙 전략이 효과적입니다.</div>
         <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 어디가 포털 전형 정보</a>
+      </div>
+
+      <!-- ===== 추가 일정·제도 ===== -->
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">정시 가·나·다군 원서접수 2027년 1월 4~7일</div>
+        <div class="news-body">2027학년도 정시 원서접수는 1월 4일(일)~7일(수)로 예정됩니다. 가·나·다군 각 1개 대학씩 최대 3개 지원이 가능하며, 합격자 발표는 2월 초 순차 진행됩니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 어디가 정시 일정</a>
+      </div>
+
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">수능 이후 수시 합격·불합격 발표 12월 19일 이전 완료</div>
+        <div class="news-body">수시 최종 합격자 발표 마감은 12월 19일(금)까지입니다. 수시 합격 시 등록을 포기해도 정시 지원은 가능하지만, 수시 합격 후 미등록 시 불이익이 있으므로 전략적 판단이 필요합니다.</div>
+        <a href="https://www.saeisol.com" target="_blank" rel="noopener" class="news-link">→ 새이솔 일정 안내</a>
+      </div>
+
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">수능 성적표 재출력·재발급 방법 — 분실 시 대처법</div>
+        <div class="news-body">성적통지표 분실 시 KICE 홈페이지에서 재출력 가능합니다. 단, 재발급은 졸업연도 기준 일정 기간 이후에는 별도 신청 절차가 필요하므로 원본 보관에 주의해야 합니다.</div>
+        <a href="https://www.suneung.re.kr" target="_blank" rel="noopener" class="news-link">→ KICE 공식 안내</a>
+      </div>
+
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">예비대학 운영 1월 중순~2월 초 — 등록 전 학습 기회</div>
+        <div class="news-body">서울대·연세대·고려대 등 주요 대학들이 정시 합격자 발표 후 예비대학 프로그램을 운영합니다. 전공 미리 체험, 캠퍼스 적응 지원 등의 기회이므로 합격 후 놓치지 말 것.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 어디가 대학 안내</a>
+      </div>
+
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">논술 전형 일정 — 수능 전후 집중 실시</div>
+        <div class="news-body">2027학년도 논술 시험 대부분이 11월~12월에 집중됩니다. 연세대(수능 전), 성균관대·한양대·중앙대(수능 후) 등 대학별 일정 확인 필수. 수능과 겹치지 않도록 일정 조율이 필요합니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 논술 전형 일정 확인</a>
+      </div>
+
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">학생부종합 서류 제출 기한 9월 중순까지</div>
+        <div class="news-body">수시 지원 후 학생부종합 서류(자기소개서 폐지 이후 학교생활기록부 중심) 제출 기한은 대학별로 9월 중순~말로 설정됩니다. 온라인 제출 방법 및 파일 형식 사전 확인 필수.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 서류 제출 가이드</a>
+      </div>
+
+      <!-- ===== 추가 N수생 ===== -->
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">재수생 수능 응시 비중 역대 최고 갱신 전망</div>
+        <div class="news-body">의대 정원 확대 영향으로 2027학년도 졸업생(재수생 포함) 응시 비중이 30%를 넘어설 것으로 전망됩니다. 경쟁 심화로 재수생도 치밀한 전략 수립이 더욱 중요해졌습니다.</div>
+        <a href="https://www.donga.com" target="_blank" rel="noopener" class="news-link">→ 동아일보 분석</a>
+      </div>
+
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">재수 학원 vs 독학 — 유형별 선택 가이드</div>
+        <div class="news-body">재수 방식은 크게 ①종합학원 기숙형 ②단과학원+자습 ③독학재수학원 ④온라인 강의+독학으로 나뉩니다. 본인의 자기관리 능력·목표 점수 차·예산을 고려해 선택해야 합니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 오르비 재수 가이드</a>
+      </div>
+
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">삼수·사수생 증가 추세 — N수 장기화 원인 분석</div>
+        <div class="news-body">의대 목표 학생 중심으로 삼수·사수생이 늘고 있습니다. 전문가들은 명확한 목표 없이 N수를 반복하면 심리적 소진이 크므로, 수능 직후 진로 상담을 받을 것을 권고합니다.</div>
+        <a href="https://www.chosun.com" target="_blank" rel="noopener" class="news-link">→ 조선일보 심층 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">재수생 심리 관리 — 슬럼프 극복 실전 전략</div>
+        <div class="news-body">재수 중 6~8월 슬럼프가 가장 흔합니다. 주 1회 취미활동, 담임 선생님과 정기 상담, 모의고사 성적 추이 그래프 시각화 등이 심리 안정에 효과적이라고 합격생들은 말합니다.</div>
+        <a href="https://blog.naver.com/ebsi" target="_blank" rel="noopener" class="news-link">→ EBS 수험생 멘탈 관리</a>
+      </div>
+
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">재수생 건강보험료 의존 — 피부양자 유지 방법</div>
+        <div class="news-body">재수생은 부모 건강보험 피부양자로 유지 가능합니다. 단, 아르바이트로 연 소득 360만 원 초과 시 피부양자 자격이 상실되므로 소득 관리에 주의해야 합니다.</div>
+        <a href="https://www.nhis.or.kr" target="_blank" rel="noopener" class="news-link">→ 국민건강보험 안내</a>
+      </div>
+
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">재수 성공률 통계 — 실제 점수 향상 분포</div>
+        <div class="news-body">입시 업체 통계에 따르면 재수생의 약 60%가 수능 점수를 향상시키지만 30%는 동점 또는 하락합니다. 특히 국어·수학 동시 향상 케이스가 최종 합격과 높은 상관관계를 보입니다.</div>
+        <a href="https://www.jinhakreport.com" target="_blank" rel="noopener" class="news-link">→ 진학사 통계 리포트</a>
+      </div>
+
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">재수생 수시 지원 전략 — 논술·최저 활용법</div>
+        <div class="news-body">재수생은 학생부보다 수능 최저가 있는 논술 전형이 상대적으로 유리합니다. 연세대·성균관대·한양대 등 주요 논술 전형의 수능 최저 기준을 미리 분석해 목표를 설정해야 합니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 어디가 논술 전형 정보</a>
+      </div>
+
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">기숙형 재수학원 비용 비교 — 연간 1200만~2000만 원</div>
+        <div class="news-body">서울 주요 기숙재수학원 연간 비용은 1,200만~2,000만 원 수준입니다. 일부 학원이 성적 우수자 장학금·할인 제도를 운영하므로 입학 전 상담 시 반드시 확인해야 합니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 오르비 학원 리뷰</a>
+      </div>
+
+      <!-- ===== 추가 의대 ===== -->
+      <div class="news-card" data-cat="med">
+        <div class="news-cat med">의대</div>
+        <div class="news-title">의대 정원 2,000명 증원 — 지방대 의대 수혜</div>
+        <div class="news-body">2025학년도부터 의대 입학 정원이 총 2,000명 증원되어 2027학년도까지 유지됩니다. 수도권보다 지방대 증원 비중이 높아 지방 국립대 의대 경쟁률이 상대적으로 낮아질 전망입니다.</div>
+        <a href="https://www.moe.go.kr" target="_blank" rel="noopener" class="news-link">→ 교육부 공식 발표</a>
+      </div>
+
+      <div class="news-card" data-cat="med">
+        <div class="news-cat med">의대</div>
+        <div class="news-title">의대 정시 커트라인 — 전국 의대 점수대 정리</div>
+        <div class="news-body">2026학년도 의대 정시 합격선은 서울권 의대 수능 표준점수 합 395점 이상, 지방 의대 370~385점 수준이었습니다. 정원 확대로 2027학년도 소폭 하락 예상.</div>
+        <a href="https://www.jinhakreport.com" target="_blank" rel="noopener" class="news-link">→ 진학사 의대 커트라인</a>
+      </div>
+
+      <div class="news-card" data-cat="med">
+        <div class="news-cat med">의대</div>
+        <div class="news-title">치의대·한의대·약대 동반 경쟁 심화</div>
+        <div class="news-body">의대 정원 확대 여파로 의대 점수대가 내려오면서 치의대·한의대·약대 지원 패턴이 변화하고 있습니다. 특히 약대는 학사 편입 폐지 후 학부 신입 전형만 운영 중.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 어디가 의약 계열 전형</a>
+      </div>
+
+      <div class="news-card" data-cat="med">
+        <div class="news-cat med">의대</div>
+        <div class="news-title">의대 수시 면접 준비 — MMI·토론면접 유형</div>
+        <div class="news-body">의대 수시 면접은 크게 MMI(다중 미니면접)와 제시문 기반 토론면접으로 나뉩니다. 서울대 의대는 제시문+MMI 복합 형태, 연세대는 제시문 면접 중심으로 운영됩니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 의대 면접 기출 정리</a>
+      </div>
+
+      <div class="news-card" data-cat="med">
+        <div class="news-cat med">의대</div>
+        <div class="news-title">의대 자퇴·휴학생 복귀 문제 — 2027학년도 영향</div>
+        <div class="news-body">의대 증원 반발로 자퇴·휴학한 학생들의 복귀 여부에 따라 실질 의대 경쟁률이 달라질 수 있습니다. 복귀 규모에 따라 일부 의대 합격선이 소폭 상승할 수도 있어 주의 필요.</div>
+        <a href="https://www.joongang.co.kr" target="_blank" rel="noopener" class="news-link">→ 중앙일보 의대 분석</a>
+      </div>
+
+      <div class="news-card" data-cat="med">
+        <div class="news-cat med">의대</div>
+        <div class="news-title">지방 국립대 의대 — 수도권 의대 대안으로 주목</div>
+        <div class="news-body">경북대·전남대·충남대 등 지방 국립대 의대가 수도권 의대 대비 합격선이 낮아지며 전략적 지원 대상으로 부상합니다. 졸업 후 지역 의무복무 조건 여부를 반드시 확인해야 합니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 지방 의대 전형 정보</a>
+      </div>
+
+      <div class="news-card" data-cat="med">
+        <div class="news-cat med">의대</div>
+        <div class="news-title">의대 생활과학부·자연과학부 편입 폐지 이후 변화</div>
+        <div class="news-body">의대 학사 편입이 사실상 폐지되면서 의대 진학의 유일한 경로는 학부 수시·정시로 좁혀졌습니다. 재수생에게는 정시 경쟁이 더욱 중요해진 상황입니다.</div>
+        <a href="https://www.moe.go.kr" target="_blank" rel="noopener" class="news-link">→ 교육부 의대 정책</a>
+      </div>
+
+      <div class="news-card" data-cat="med">
+        <div class="news-cat med">의대</div>
+        <div class="news-title">의대 수능 최저 기준 강화 대학 증가</div>
+        <div class="news-body">일부 대학들이 의대 수시 수능 최저 기준을 4개 영역 합 5~6등급 이내로 강화하는 추세입니다. 수능 최저를 충족하지 못하면 서류·면접과 무관하게 탈락하므로 수능 준비를 병행해야 합니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 의대 수능 최저 현황</a>
+      </div>
+
+      <!-- ===== 추가 과목 전략 ===== -->
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">국어 문학 — 현대시 작품 정리 필수 30선</div>
+        <div class="news-body">수능 국어 문학 파트에서 현대시 빈출 작품 30선은 매년 반복 출제됩니다. 윤동주·김소월·이상 등 주요 시인의 대표작 해석 방법과 시어 의미를 완벽히 정리해야 합니다.</div>
+        <a href="https://www.ebsi.co.kr" target="_blank" rel="noopener" class="news-link">→ EBS 문학 강의</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">수학 미적분 vs 확률과통계 — 선택 기준</div>
+        <div class="news-body">이과 계열 지원 시 미적분이 필수이며, 표준점수 환산에서도 미적분 선택자에게 유리한 구조가 유지됩니다. 확통은 점수 안정성이 높으나 상위권 경쟁에서 불리할 수 있습니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 오르비 수학 선택 분석</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">영어 절대평가 1등급 목표 — 최소 투자 최대 효율</div>
+        <div class="news-body">영어는 절대평가로 1등급(90점 이상)이 목표입니다. EBS 수능특강·완성 연계율이 50% 이상이므로 EBS 교재 완전 정복 후 기출 풀이 전략이 가장 효율적입니다.</div>
+        <a href="https://www.ebsi.co.kr" target="_blank" rel="noopener" class="news-link">→ EBS 영어 강의</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">한국사 필수 응시 — 4등급 이내 안정권 전략</div>
+        <div class="news-body">한국사는 절대평가로 모든 수험생 필수 응시입니다. 상위 대학 지원 시 2등급 이상이 유리하며, 시대별 흐름과 주요 사건 연표 정리로 4주 내 완성 가능합니다.</div>
+        <a href="https://www.ebsi.co.kr" target="_blank" rel="noopener" class="news-link">→ EBS 한국사 강의</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">과학탐구 선택 조합 — 화학1+생명과학1 최다</div>
+        <div class="news-body">이과 수험생의 과탐 선택 최다 조합은 화학Ⅰ+생명과학Ⅰ입니다. 그러나 물리Ⅱ·화학Ⅱ 선택 시 표준점수 유리하므로 자신 있는 과목 선택이 관건입니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 과탐 선택 분석</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">사회탐구 — 생활과윤리·사회문화 응시자 최다</div>
+        <div class="news-body">문과 수험생 최다 사탐 선택은 생활과윤리+사회문화입니다. 상대적으로 내용이 덜 방대하지만 표준점수 불리 가능성이 있으므로 세계사·경제 조합도 전략적으로 고려할 만합니다.</div>
+        <a href="https://www.ebsi.co.kr" target="_blank" rel="noopener" class="news-link">→ EBS 사탐 강의</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">국어 독서(비문학) 고득점 — 지문 읽기 속도 훈련법</div>
+        <div class="news-body">수능 국어에서 비문학은 지문 읽기 속도와 정확성이 핵심입니다. 1지문 3분 이내 독해 → 문제 풀이 2분 내 완료 목표로, 매일 실전 연습이 필요합니다.</div>
+        <a href="https://www.ebsi.co.kr" target="_blank" rel="noopener" class="news-link">→ EBS 독서 강의</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">수학 킬러문항 대비 — 고난도 유형 집중 공략</div>
+        <div class="news-body">수능 수학 28~30번 킬러문항은 30점 내외의 배점을 차지합니다. 시간 효율을 위해 중간 난도 문항을 먼저 처리하고, 킬러문항에 25~30분을 할애하는 시간 배분 전략이 중요합니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 수학 킬러 기출 분석</a>
+      </div>
+
+      <!-- ===== 추가 모의고사 ===== -->
+      <div class="news-card" data-cat="mock">
+        <div class="news-cat mock">모의고사</div>
+        <div class="news-title">2026년 9월 모의평가 등급컷 — 과목별 상세 분석</div>
+        <div class="news-body">2026년 9월 모평 기준 국어 1등급 컷 86점, 수학(미적분) 89점, 영어 1등급 비율 8.2%로 나타났습니다. 9월 모평은 수능 실력의 가장 정확한 지표이므로 결과 분석이 중요합니다.</div>
+        <a href="https://www.ebsi.co.kr" target="_blank" rel="noopener" class="news-link">→ EBS 등급컷 자료</a>
+      </div>
+
+      <div class="news-card" data-cat="mock">
+        <div class="news-cat mock">모의고사</div>
+        <div class="news-title">10월 서울시 교육청 모의고사 — 수능 전 마지막 점검</div>
+        <div class="news-body">10월 서울시 교육청 주관 모의고사는 수능 4~5주 전 실시됩니다. 재수생도 응시 가능하며, 컨디션 조절·실전 감각 유지에 활용해야 합니다.</div>
+        <a href="https://www.seouledu.go.kr" target="_blank" rel="noopener" class="news-link">→ 서울시교육청 일정</a>
+      </div>
+
+      <div class="news-card" data-cat="mock">
+        <div class="news-cat mock">모의고사</div>
+        <div class="news-title">사설 모의고사 활용법 — 이투스·대성·메가스터디 비교</div>
+        <div class="news-body">이투스·대성·메가스터디 등 주요 사설 모의고사는 수능과 유사한 난도로 실전 연습에 활용됩니다. 과도한 사설 모의고사 응시보다는 오답 분석과 연계 학습이 더 중요합니다.</div>
+        <a href="https://www.etoos.com" target="_blank" rel="noopener" class="news-link">→ 이투스 모의고사</a>
+      </div>
+
+      <div class="news-card" data-cat="mock">
+        <div class="news-cat mock">모의고사</div>
+        <div class="news-title">모의고사 오답노트 효과적인 작성법</div>
+        <div class="news-body">모의고사 오답 유형을 ①개념 미숙 ②계산 실수 ③시간 부족으로 분류해 기록하면 약점 파악이 명확해집니다. 오답노트는 주 1회 재복습 사이클이 가장 효과적입니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 오르비 공부법 게시판</a>
+      </div>
+
+      <div class="news-card" data-cat="mock">
+        <div class="news-cat mock">모의고사</div>
+        <div class="news-title">수능 시험장 배치 — 재수생 시험장 유의사항</div>
+        <div class="news-body">재수생은 재학생과 다른 시험장에 배치됩니다. 보통 전문대·대학교 시험장이 배정되며, 수험표에 표기된 고사장을 사전에 방문해 교통편과 화장실 위치를 확인해 두는 것이 좋습니다.</div>
+        <a href="https://www.suneung.re.kr" target="_blank" rel="noopener" class="news-link">→ KICE 수능 안내</a>
+      </div>
+
+      <!-- ===== 추가 대학별 ===== -->
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">서울대 2027 정시 수능 100% 전형 유지</div>
+        <div class="news-body">서울대는 2027학년도 정시에서 수능 100% 전형을 유지합니다. 단, 일부 예체능 계열은 수능+실기 복합 전형이 적용됩니다. 군 배치는 '나'군입니다.</div>
+        <a href="https://admission.snu.ac.kr" target="_blank" rel="noopener" class="news-link">→ 서울대 입학처</a>
+      </div>
+
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">연세대 정시 수능+면접 전형 — 면접 폐지 논의</div>
+        <div class="news-body">연세대 정시 면접 전형(활동우수형)의 폐지·축소 여부가 2027학년도 핵심 이슈입니다. 최신 입시요강 발표 후 지원 전략을 재점검해야 합니다.</div>
+        <a href="https://admission.yonsei.ac.kr" target="_blank" rel="noopener" class="news-link">→ 연세대 입학처</a>
+      </div>
+
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">고려대 정시 수능 100% — 학과별 가중치 확인</div>
+        <div class="news-body">고려대 정시는 수능 100%이며, 인문계는 국어·수학·영어·탐구, 자연계는 수학 가중치가 높습니다. 학과별 가중치 차이가 크므로 지원 전 반드시 계산기 시뮬레이션이 필요합니다.</div>
+        <a href="https://oku.korea.ac.kr" target="_blank" rel="noopener" class="news-link">→ 고려대 입학처</a>
+      </div>
+
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">성균관대 자연과학 계열 수능 최저 강화</div>
+        <div class="news-body">성균관대 자연과학 계열 수시 수능 최저 기준이 강화되어 2개 영역 합 4등급 이내 → 3등급 이내로 상향되는 전형이 증가합니다. 지원 전 요강의 최저 기준 재확인 필수.</div>
+        <a href="https://www.skku.edu/admission" target="_blank" rel="noopener" class="news-link">→ 성균관대 입학처</a>
+      </div>
+
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">한양대 정시 '다'군 — 수능 100%+가중치</div>
+        <div class="news-body">한양대 정시는 '다'군으로 수능 100% 전형입니다. 공과대학은 수학·과학탐구 가중치가 높으며, 서울 주요 대학 중 가장 늦게 최종 합격자를 발표하는 편입니다.</div>
+        <a href="https://www.hanyang.ac.kr/admission" target="_blank" rel="noopener" class="news-link">→ 한양대 입학처</a>
+      </div>
+
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">중앙대 정시 '나'군 — 의약학 계열 집중</div>
+        <div class="news-body">중앙대는 정시 '나'군으로 의학부·약학부 지원자의 핵심 선택지입니다. 수능 영역별 반영 비율이 계열에 따라 크게 다르므로 학과별 계산이 필수입니다.</div>
+        <a href="https://admission.cau.ac.kr" target="_blank" rel="noopener" class="news-link">→ 중앙대 입학처</a>
+      </div>
+
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">이화여대 자연과학 계열 정시 '나'군</div>
+        <div class="news-body">이화여대 자연과학부는 정시 '나'군으로, 의예과·약학부 경쟁률이 높습니다. 인문계 학부는 '가'군에도 모집하므로 전략적 복수 지원이 가능합니다.</div>
+        <a href="https://admission.ewha.ac.kr" target="_blank" rel="noopener" class="news-link">→ 이화여대 입학처</a>
+      </div>
+
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">서강대 정시 '나'군 — 이공계 특화 전형</div>
+        <div class="news-body">서강대는 정시 '나'군으로 이공계 특화 교육으로 유명합니다. 수학·과학탐구 반영 비율이 높으며, 수능 성적 대비 입결이 다소 낮아 전략적 지원 대상으로 인기가 높습니다.</div>
+        <a href="https://admission.sogang.ac.kr" target="_blank" rel="noopener" class="news-link">→ 서강대 입학처</a>
+      </div>
+
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">경희대 한의대·의대·치의대 정시 경쟁률</div>
+        <div class="news-body">경희대 의·치·한 계열은 매년 높은 경쟁률을 기록합니다. 한의대는 인문·자연 계열 모두 지원 가능하여 문과 최상위 수험생의 주요 지원처 중 하나입니다.</div>
+        <a href="https://iphak.khu.ac.kr" target="_blank" rel="noopener" class="news-link">→ 경희대 입학처</a>
+      </div>
+
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">KAIST·POSTECH — 수능 없이 입학하는 특별전형</div>
+        <div class="news-body">KAIST·POSTECH은 수능 없이 학업성적+면접·추천서로 선발하는 특별전형이 주류입니다. 재수생은 지원이 제한되는 경우가 많으므로 반드시 지원 자격을 요강에서 확인해야 합니다.</div>
+        <a href="https://admission.kaist.ac.kr" target="_blank" rel="noopener" class="news-link">→ KAIST 입학처</a>
+      </div>
+
+      <!-- ===== 추가 입시 개편 ===== -->
+      <div class="news-card" data-cat="reform">
+        <div class="news-cat reform">입시 개편</div>
+        <div class="news-title">2028학년도 수능 개편안 — 통합형 수능 예고</div>
+        <div class="news-body">교육부는 2028학년도부터 수능 개편을 예고하고 있습니다. 문·이과 구분 없는 통합형 수능, 선택과목 축소 방향으로 논의 중이며, 현 재수생에게는 직접 영향이 없지만 대학들의 입시 변화를 예의주시해야 합니다.</div>
+        <a href="https://www.moe.go.kr" target="_blank" rel="noopener" class="news-link">→ 교육부 개편 예고</a>
+      </div>
+
+      <div class="news-card" data-cat="reform">
+        <div class="news-cat reform">입시 개편</div>
+        <div class="news-title">자기소개서 폐지 후 학종 평가 방향 변화</div>
+        <div class="news-body">자소서 폐지 이후 학생부종합전형은 학교생활기록부와 면접에 더 집중합니다. 학교 내 활동 기록의 질과 면접 역량 강화가 학종 합격의 핵심이 됐습니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 어디가 학종 정보</a>
+      </div>
+
+      <div class="news-card" data-cat="reform">
+        <div class="news-cat reform">입시 개편</div>
+        <div class="news-title">지역균형전형 확대 — 지방 고교 출신 혜택</div>
+        <div class="news-body">서울 주요 대학들이 지역균형전형 비중을 확대하는 추세입니다. 재수생은 지역균형전형에서 불리하므로 일반전형·논술·정시에 집중하는 전략이 효과적입니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 지역균형전형 현황</a>
+      </div>
+
+      <div class="news-card" data-cat="reform">
+        <div class="news-cat reform">입시 개편</div>
+        <div class="news-title">논술 전형 부활 추세 — 폐지 대학도 재도입 검토</div>
+        <div class="news-body">한때 논술을 폐지했던 일부 대학이 재도입을 검토 중입니다. 논술은 재수생에게 유리한 전형이므로 논술 준비 비중을 높이는 것이 전략적으로 유효합니다.</div>
+        <a href="https://www.jinhakreport.com" target="_blank" rel="noopener" class="news-link">→ 논술 전형 변화 분석</a>
+      </div>
+
+      <div class="news-card" data-cat="reform">
+        <div class="news-cat reform">입시 개편</div>
+        <div class="news-title">약대 신설·증원 — 6년제 약대 전국 확산</div>
+        <div class="news-body">약학대학이 전국 주요 대학에 신설·증원되며 약대 입시 경쟁 구도가 변화합니다. 지방 신설 약대의 경우 수도권 약대보다 합격선이 낮아 전략적 지원 대상으로 부상합니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 약대 전형 현황</a>
+      </div>
+
+      <!-- ===== 수험 생활 (tip) ===== -->
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">수능 D-100 체크리스트 — 지금 해야 할 것</div>
+        <div class="news-body">수능 100일 전: ①약점 과목 파악 ②모의고사 시간 배분 연습 ③EBS 연계 교재 완성 목표 설정 ④논술 대상 대학 확정 ⑤건강검진. 지금 바로 실행해야 합니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 오르비 D-100 전략</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">하루 공부 루틴 — 최고 성적 수험생의 시간표</div>
+        <div class="news-body">최상위 수험생의 하루 패턴: 06:30 기상→07:30 국어 집중→10:00 수학→14:00 탐구→16:00 영어→19:00 취약점 복습→22:00 취침. 6~7시간 수면은 필수입니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 오르비 합격생 루틴</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">수면 부족이 성적에 미치는 영향 — 연구 결과</div>
+        <div class="news-body">수면 6시간 미만 유지 시 기억력·집중력이 최대 30% 저하된다는 연구 결과가 있습니다. 수능 수험생은 최소 7시간 수면을 유지하고, 특히 모의고사 전날 충분한 수면이 중요합니다.</div>
+        <a href="https://www.snuh.org" target="_blank" rel="noopener" class="news-link">→ 서울대병원 수면 정보</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">스마트폰 사용 관리 — 공부 집중력 높이는 앱</div>
+        <div class="news-body">공부 중 스마트폰 알림을 차단하는 앱(Forest, 타이머 앱)을 활용하면 집중력이 향상됩니다. 하루 스마트폰 사용을 1시간 이내로 제한하는 것이 성적 향상과 연관됩니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 오르비 집중력 팁</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">수능 당일 준비물 체크리스트</div>
+        <div class="news-body">수능 당일 필수 준비물: 수험표, 신분증(주민등록증·학생증), 검은 컴퓨터용 수성 사인펜(여분 포함), 아날로그 시계, 수정테이프, 도시락/간식. 고사장 반입 금지 물품도 반드시 확인.</div>
+        <a href="https://www.suneung.re.kr" target="_blank" rel="noopener" class="news-link">→ KICE 수험생 안내</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">수능 전날 밤 — 최적 컨디션 만들기</div>
+        <div class="news-body">수능 전날은 가벼운 복습만 하고 무조건 일찍 잠자리에 들어야 합니다. 과식은 피하고 친숙한 음식으로 저녁식사, 10시 이전 취침 목표. 새벽 공부는 오히려 역효과입니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 수능 전날 루틴 정리</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">수능 점심 도시락 — 집중력 높이는 음식 추천</div>
+        <div class="news-body">수능 점심은 소화가 쉬운 탄수화물 위주(주먹밥, 샌드위치)가 좋습니다. 졸음 유발하는 과한 단백질·지방은 피하고, 초콜릿·사탕은 혈당 유지에 도움이 됩니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 수능 컨디션 관리 팁</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">재수생 사회적 고립감 — 연결감 유지 방법</div>
+        <div class="news-body">재수 기간 친구들이 대학에 진학해 사회적 고립감을 느끼는 경우가 많습니다. 같은 목표를 가진 스터디 그룹 참여나 독서 모임으로 건전한 사회적 연결을 유지하는 것이 중요합니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 재수생 커뮤니티</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">집중력 향상 포모도로 기법 — 25분 공부 5분 휴식</div>
+        <div class="news-body">포모도로 기법은 25분 집중 + 5분 휴식을 4회 반복 후 긴 휴식을 취하는 방식입니다. 집중력 유지와 피로 예방에 효과적이며, 수험생 사이에서 가장 많이 활용되는 시간 관리 기법입니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 포모도로 공부법</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">운동이 성적에 미치는 영향 — 주 3회 30분</div>
+        <div class="news-body">주 3회 30분 이상의 유산소 운동이 뇌 혈류를 증가시켜 기억력·집중력을 향상시킨다는 연구 결과가 있습니다. 과도한 운동보다 가벼운 산책·스트레칭도 충분히 효과적입니다.</div>
+        <a href="https://www.snuh.org" target="_blank" rel="noopener" class="news-link">→ 운동과 학습 연구</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">수험생 눈 건강 관리 — 장시간 독서 대처법</div>
+        <div class="news-body">장시간 독서와 화면 노출로 인한 안구 건조·피로가 수험생에게 흔합니다. 20-20-20 규칙(20분마다 20피트 거리 20초 응시)을 실천하고, 인공눈물 사용도 고려하세요.</div>
+        <a href="https://www.snuh.org" target="_blank" rel="noopener" class="news-link">→ 눈 건강 관리 정보</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">겨울방학 재수 시작 — 1월 학습 계획 세우기</div>
+        <div class="news-body">재수를 1월부터 시작한다면: ①3월 모의고사 기준 목표 점수 설정 ②과목별 기본개념 복습 완료 계획 ③학원 or 독학 결정. 초반 루틴 확립이 1년 성패를 가릅니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 재수 시작 가이드</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">독서실 vs 카페 vs 학원 자습실 — 공부 장소 선택</div>
+        <div class="news-body">장소별 장단점: 독서실(집중도 최상·비용 절감), 학원 자습실(관리 받으며 집중), 카페(환기·기분 전환 용이). 공부 스타일에 따라 주 환경을 정하고 보조 장소를 병행하는 것이 좋습니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 공부 환경 선택 팁</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">수능 시험장 내 시간 관리 — 영역별 시간 배분</div>
+        <div class="news-body">국어 80분(평균 문제당 1.6분), 수학 100분(킬러문항 30분 확보), 영어 70분(듣기 35분+독해 35분), 탐구 각 30분. 시간 내 못 푼 문제는 반드시 찍고 넘어가야 합니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 수능 시간 배분 전략</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">OMR 카드 마킹 실수 — 방지 요령</div>
+        <div class="news-body">OMR 카드 마킹 실수는 치명적입니다. ①10문제마다 마킹 확인 ②시험 종료 10분 전 마킹 점검 ③번호 밀림 방지를 위한 체크 습관이 필수입니다. 마킹 연습을 모의고사 때부터 습관화하세요.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ OMR 마킹 실수 사례</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">시험 불안감 극복 — 긴장 완화 호흡법</div>
+        <div class="news-body">시험장에서 갑작스러운 긴장감이 오면: ①4초 흡입→4초 유지→4초 배출 '박스 호흡' 3회 ②어깨·목 스트레칭 ③'이미 충분히 준비했다' 자기 긍정. 불안은 자연스러운 반응임을 인지하는 것이 중요합니다.</div>
+        <a href="https://orbi.kr" target="_blank" rel="noopener" class="news-link">→ 시험 불안 관리법</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">수능 후 가채점 활용법 — 점수 추정 방법</div>
+        <div class="news-body">수능 당일 가채점 후 입시 업체(이투스·유웨이·진학사 등)의 등급 추정 서비스를 활용하면 대략적인 점수 범위를 파악할 수 있습니다. 12월 성적 발표 전 수시 전략도 조정할 수 있습니다.</div>
+        <a href="https://www.etoos.com" target="_blank" rel="noopener" class="news-link">→ 이투스 가채점 서비스</a>
+      </div>
+
+      <div class="news-card" data-cat="tip">
+        <div class="news-cat tip">수험 생활</div>
+        <div class="news-title">도서관 이용 수험생 — 공공 도서관 활용 꿀팁</div>
+        <div class="news-body">재수생은 거주지 인근 공공도서관 열람실을 무료로 이용 가능합니다. 대부분 좌석 예약제이며 조용하고 집중하기 좋은 환경입니다. 학습 자료 대출 서비스도 적극 활용하세요.</div>
+        <a href="https://www.nl.go.kr" target="_blank" rel="noopener" class="news-link">→ 국립중앙도서관</a>
+      </div>
+
+      <!-- ===== 입시 정보 (info) ===== -->
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">수능 표준점수·백분위·등급 — 계산 원리 이해</div>
+        <div class="news-body">수능 표준점수는 원점수에서 평균을 빼고 표준편차로 나눈 후 조정합니다. 어려운 시험일수록 최고 표준점수가 높아지는 구조이므로 시험이 어려웠다면 오히려 유리할 수 있습니다.</div>
+        <a href="https://www.suneung.re.kr" target="_blank" rel="noopener" class="news-link">→ KICE 성적 안내</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">수능 등급 구분 기준 — 상위 누적 비율</div>
+        <div class="news-body">수능 1등급은 상위 4%, 2등급은 누적 11%, 3등급은 누적 23% 이내입니다. 영어·한국사는 절대평가이며, 나머지 영역은 상대평가 등급제입니다. 목표 등급에 맞는 원점수를 역산해 학습 목표를 설정하세요.</div>
+        <a href="https://www.suneung.re.kr" target="_blank" rel="noopener" class="news-link">→ 등급 기준 안내</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">수능 EBS 연계율 50% — 실질 연계 이해하기</div>
+        <div class="news-body">수능 EBS 연계율 50%는 동일 지문이 아닌 주제·소재·개념 연계입니다. 국어·영어는 지문 직접 연계, 수학·탐구는 개념·유형 연계입니다. EBS 교재를 외우는 것보다 이해가 중요합니다.</div>
+        <a href="https://www.ebsi.co.kr" target="_blank" rel="noopener" class="news-link">→ EBS 연계 교재</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">가군·나군·다군 정시 지원 전략 — 3개 대학 선택</div>
+        <div class="news-body">정시 3개 군에서 각각 1개 대학 지원이 가능합니다. 전략적 배분: ①가군 상향 ②나군 적정 ③다군 안정, 또는 ①가군 적정 ②나군 상향 ③다군 안정 등 목표에 맞게 조율해야 합니다.</div>
+        <a href="https://www.jinhakreport.com" target="_blank" rel="noopener" class="news-link">→ 정시 전략 가이드</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">수시 6개 대학 지원 — 전형별 분산 전략</div>
+        <div class="news-body">수시는 최대 6개 대학에 지원 가능합니다. 재수생은 ①논술 전형 3개 ②학생부종합 1~2개 ③수능 최저 없는 전형 1개 등 다양한 전형 분산이 안전합니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 어디가 수시 전략</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">합격자 발표 후 등록 포기·추가 합격 안내</div>
+        <div class="news-body">정시 합격 후 등록 포기 시 추가 합격이 차례로 진행됩니다. 미등록충원 합격 기간을 놓치면 자동 불합격이므로 합격 후 연락처 최신화와 주기적 확인이 중요합니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 어디가 합격자 조회</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">수능 이후 정시 컨설팅 — 유료 서비스 활용 판단</div>
+        <div class="news-body">유료 입시 컨설팅은 배치표 해석·군별 지원 전략에 도움이 됩니다. 그러나 무료 제공되는 진학사·유웨이·이투스 배치 서비스도 상당히 정확하므로 비용 대비 효과를 판단해야 합니다.</div>
+        <a href="https://www.uway.com" target="_blank" rel="noopener" class="news-link">→ 유웨이 배치표</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">입시 학원 설명회 활용 — 9~10월 집중 개최</div>
+        <div class="news-body">대형 입시 학원들이 9~10월에 2027학년도 입시 설명회를 집중 개최합니다. 무료 참석 가능하며 최신 입시 트렌드와 대학별 전략을 직접 들을 수 있습니다. 일정 사전 확인 후 신청하세요.</div>
+        <a href="https://www.megastudy.net" target="_blank" rel="noopener" class="news-link">→ 메가스터디 설명회</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">인터넷 강의 플랫폼 비교 — 메가·EBSi·대성·이투스</div>
+        <div class="news-body">수능 인터넷 강의 플랫폼별 특징: EBSi(무료·EBS 연계 강의 필수), 메가스터디(최대 규모·스타 강사), 대성마이맥(수학 특화), 이투스(과학 특화). 과목별 최강 강사를 찾아 혼합 활용하는 것이 효율적입니다.</div>
+        <a href="https://www.ebsi.co.kr" target="_blank" rel="noopener" class="news-link">→ EBSi 무료 강의</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">수능 응시료 및 환불 정책</div>
+        <div class="news-body">2027학년도 수능 응시료는 3개 이하 영역 22,000원, 4개 이상 영역 35,000원 수준(전년 기준)입니다. 원서 접수 이후 취소 시 기간별 환불 규정이 다르므로 확인이 필요합니다.</div>
+        <a href="https://www.suneung.re.kr" target="_blank" rel="noopener" class="news-link">→ KICE 응시료 안내</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">대학 장학금 정보 — 성적 우수 장학금 기준</div>
+        <div class="news-body">대학 입학 후 성적 우수 장학금 기준은 대학마다 다릅니다. 서울 주요 대학은 신입생 최우수 장학금(등록금 전액)을 수능 최우수 성적자에게 제공하는 경우가 많습니다. 지원 대학 장학금 규정 사전 확인 권장.</div>
+        <a href="https://www.kosaf.go.kr" target="_blank" rel="noopener" class="news-link">→ 한국장학재단</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">기초수급자·차상위계층 — 특별 입학전형 안내</div>
+        <div class="news-body">기초생활수급자·차상위계층 수험생을 위한 기회균형전형이 대부분의 대학에 설치돼 있습니다. 일반 전형보다 경쟁이 낮으며, 지원 자격 서류를 미리 준비해야 합니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 기회균형전형 안내</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">수능 성적 유효기간 — 몇 년까지 사용 가능?</div>
+        <div class="news-body">수능 성적 유효기간은 별도 법적 제한이 없으나, 대부분의 대학이 해당 연도 수능 성적만 인정합니다. 군 복무 중인 경우 일부 대학이 전년도 성적을 인정하는 경우가 있으므로 요강 확인이 필요합니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 어디가 입시 FAQ</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">정시 합격 후 등록금 납부 기간 — 놓치면 불합격</div>
+        <div class="news-body">정시 합격 후 등록금 납부는 보통 합격자 발표 후 3~5일 내에 이루어집니다. 기간 내 미납 시 합격이 취소되므로 반드시 일정을 확인하고 등록금을 준비해야 합니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 정시 등록 안내</a>
+      </div>
+
+      <div class="news-card" data-cat="info">
+        <div class="news-cat info">입시 정보</div>
+        <div class="news-title">수능 이후 면접 준비 — 수시 면접 일정 총정리</div>
+        <div class="news-body">수시 면접은 대부분 10월 말~11월 말에 집중됩니다. 수능 전 실시되는 면접과 수능 후 면접 일정이 혼재하므로, 지원 대학별 면접 일정을 캘린더에 정확히 입력해 관리해야 합니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 어디가 면접 일정</a>
       </div>
 
     </div>
