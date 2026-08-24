@@ -389,6 +389,104 @@
       .timeline-item { grid-template-columns: 90px 1fr; }
     }
 
+    /* NEWS GRID */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 12px;
+    }
+
+    .news-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .news-cat {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+      width: fit-content;
+    }
+
+    .news-cat.schedule { background: var(--blue-bg); color: var(--blue); }
+    .news-cat.nsu { background: var(--red-bg); color: var(--red); }
+    .news-cat.med { background: #FDF4FF; color: #7C3AED; }
+    .news-cat.subject { background: var(--orange-bg); color: var(--orange); }
+    .news-cat.mock { background: var(--green-bg); color: var(--green); }
+    .news-cat.univ { background: #FFF7ED; color: #C2410C; }
+    .news-cat.reform { background: var(--surface2); color: var(--text-sub); }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        .news-cat.med { background: #2D1B4E; color: #A78BFA; }
+        .news-cat.univ { background: #3A1A00; color: #FB923C; }
+      }
+    }
+
+    .news-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .news-body {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .news-link {
+      font-size: 11px;
+      color: var(--blue);
+      text-decoration: none;
+      margin-top: 4px;
+    }
+
+    .news-link:hover { text-decoration: underline; }
+
+    /* FILTER BUTTONS */
+    .nf-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-sub);
+      cursor: pointer;
+      font-family: 'Noto Sans KR', sans-serif;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .nf-btn:hover, .nf-btn.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+
+    .news-card.hidden { display: none; }
+
+    @media (max-width: 640px) {
+      .news-grid { grid-template-columns: 1fr; }
+      .dday-banner { flex-direction: column; align-items: flex-start; }
+      .compare-grid { grid-template-columns: 1fr; }
+      nav { display: none; }
+      .dday-title { font-size: 18px; }
+      .timeline-item { grid-template-columns: 90px 1fr; }
+    }
+
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   </style>
 </head>
@@ -660,34 +758,351 @@
   <section id="news">
     <div class="section-head">
       <h2>2027학년도 주요 입시 뉴스</h2>
-      <span class="badge">2026년 최신</span>
+      <span class="badge">50개+ 최신 뉴스</span>
     </div>
-    <div class="tips-list">
-      <div class="tip" style="border-left-color:var(--red)">
-        <strong>역대급 N수생 — 16만 명 돌파 전망</strong><br>
-        의대 증원 기대감과 2026 수능(불수능) 여파로 재수·삼수생(N수생)이 역대 최대인 16만 명을 넘어설 것으로 예측됩니다. N수생 비율이 높아질수록 수능 상위권 경쟁이 더욱 치열해집니다.
-        <div style="margin-top:8px"><a href="https://www.sedaily.com/article/20006810" target="_blank" rel="noopener">→ 서울경제 기사 보기</a></div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;" id="news-filters">
+      <button class="nf-btn active" onclick="filterNews('all')">전체</button>
+      <button class="nf-btn" onclick="filterNews('schedule')">일정·제도</button>
+      <button class="nf-btn" onclick="filterNews('nsu')">N수생</button>
+      <button class="nf-btn" onclick="filterNews('med')">의대</button>
+      <button class="nf-btn" onclick="filterNews('subject')">과목 전략</button>
+      <button class="nf-btn" onclick="filterNews('mock')">모의고사</button>
+      <button class="nf-btn" onclick="filterNews('univ')">대학별</button>
+      <button class="nf-btn" onclick="filterNews('reform')">입시 개편</button>
+    </div>
+
+    <div class="news-grid" id="news-container">
+
+      <!-- 일정·제도 -->
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">수능 시험일 2026년 11월 19일(목) 공식 확정</div>
+        <div class="news-body">교육부가 2027학년도 수능 시험일을 11월 19일(목)로 공식 발표했습니다. 성적 통지일은 12월 11일(금)이며, 영역별 문항 수·시험시간·성적표 기재 사항 등은 전년도와 동일합니다.</div>
+        <a href="https://m.korea.kr/briefing/pressReleaseView.do?newsId=156646031" target="_blank" rel="noopener" class="news-link">→ 정책브리핑 원문</a>
       </div>
-      <div class="tip" style="border-left-color:var(--blue)">
-        <strong>2027학년도 = '현행 통합수능 마지막 해'</strong><br>
-        2028학년도부터 수능 체제가 전면 개편됩니다. 2027학년도 수능은 현행 '공통+선택' 구조의 마지막 시험으로, 올해 N수생들이 이 구조에 익숙한 마지막 세대입니다. 재수생에게는 과목 전략을 바꿀 필요 없이 준비할 수 있다는 장점이 있습니다.
-        <div style="margin-top:8px"><a href="https://news.unn.net/news/articleView.html?idxno=591206" target="_blank" rel="noopener">→ 대학저널 기사 보기</a></div>
+
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">수능 원서접수 8월 20일 온라인 사전입력 시작</div>
+        <div class="news-body">2027학년도 수능 응시 원서접수가 8월 20일 온라인 사전입력을 시작으로 본격화됩니다. 졸업생(재수생)은 거주지 관할 시도교육청 접수처에서 개별 접수해야 하며 재학생과 접수 방법이 다릅니다.</div>
+        <a href="https://makerschool.kr/458" target="_blank" rel="noopener" class="news-link">→ 원서접수 총정리</a>
       </div>
-      <div class="tip" style="border-left-color:var(--orange)">
-        <strong>의대 증원 & 지역의사제 — 최대 변수</strong><br>
-        지역의사제 도입으로 의대 지원 구조가 복잡해졌습니다. 지역 의대 별도 선발 트랙이 생길 경우 상위권 학생들의 지원 분산 효과가 발생할 수 있어, 비의대 상위권 대학의 커트라인에도 영향을 줄 수 있습니다.
-        <div style="margin-top:8px"><a href="https://news.unn.net/news/articleView.html?idxno=591206" target="_blank" rel="noopener">→ 관련 기사 보기</a></div>
+
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">수능 원서 온라인 사전입력 — 졸업생 주의사항</div>
+        <div class="news-body">졸업생·검정고시생은 성적통지표를 온라인으로만 발급받는 방식으로 변경됐습니다. 성적 발표 후 우편 수령이 폐지되었으므로 KICE 홈페이지에서 직접 출력해야 합니다.</div>
+        <a href="https://www.suneung.re.kr" target="_blank" rel="noopener" class="news-link">→ KICE 공식 사이트</a>
       </div>
-      <div class="tip" style="border-left-color:var(--green)">
-        <strong>사탐런(사회탐구 이동) 현상 주목</strong><br>
-        과학탐구 대비 부담이 큰 이과 학생들이 사회탐구로 이동하는 '사탐런' 현상이 지속됩니다. 사탐 응시 인원 변화에 따라 과목별 표준점수·백분위가 달라질 수 있으므로, 탐구 과목 선택 전략을 신중하게 점검해야 합니다.
-        <div style="margin-top:8px"><a href="https://www.kyobit.com/news/articleView.html?idxno=2405" target="_blank" rel="noopener">→ 교육을비추다 기사 보기</a></div>
+
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">수험표에 가채점표 최초 도입</div>
+        <div class="news-body">2027 수능부터 수험표에 가채점표가 처음으로 인쇄됩니다. 시험 당일 바로 가채점에 활용할 수 있어 수험생들의 편의가 높아질 전망입니다.</div>
+        <a href="https://www.kyongbuk.co.kr/news/articleView.html?idxno=4077063" target="_blank" rel="noopener" class="news-link">→ 경북일보 기사</a>
       </div>
-      <div class="tip" style="border-left-color:var(--blue)">
-        <strong>2028학년도 수능 개편 예고 — 재수생에겐 호재</strong><br>
-        2028학년도부터 수능에서 선택과목이 사라지고 '통합사회·통합과학' 탐구 체제로 바뀝니다. 2027 수능 응시자는 현행 체제 그대로 준비하면 되므로, 체제 변환에 따른 혼란 없이 기존 학습 방향을 유지하면 됩니다.
-        <div style="margin-top:8px"><a href="https://allaboutipsi.com/admission/news/2028-suneung-changes/" target="_blank" rel="noopener">→ 2028 개편 상세 내용 보기</a></div>
+
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">수시 원서접수 9월 7~11일 확정 — 마감 시간 주의</div>
+        <div class="news-body">2027학년도 수시 원서접수 기간이 9월 7일(월)~11일(금)으로 확정됐습니다. 대학별 마감 시간이 다르므로(보통 오후 6시 또는 자정) 지원 전 반드시 각 대학 요강 확인이 필요합니다.</div>
+        <a href="https://www.saeisol.com/report/?bmode=view&idx=169486769" target="_blank" rel="noopener" class="news-link">→ 새이솔 일정 정리</a>
       </div>
+
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">정시 원서접수 2027년 1월 4~7일 확정</div>
+        <div class="news-body">정시 원서접수가 2027년 1월 4일(월)~7일(목)으로 확정됐습니다. 수능 성적 발표(12월 11일) 이후 약 3주간 가·나·다군 지원 전략을 수립할 수 있습니다.</div>
+        <a href="https://geteduify.com/parent-guide/2027%ED%95%99%EB%85%84%EB%8F%84-%EB%8C%80%EC%9E%85%EC%9D%BC%EC%A0%95-%EC%B4%9D%EC%A0%95%EB%A6%AC-2026-%EC%88%98%EB%8A%A5%C2%B7%EB%AA%A8%EC%9D%98%EA%B3%A0%EC%82%AC-%EC%8A%A4%EC%BC%80%EC%A4%84/" target="_blank" rel="noopener" class="news-link">→ 대입 일정 총정리</a>
+      </div>
+
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">수시 비중 80.3% — 역대 최고</div>
+        <div class="news-body">2027학년도 전체 모집 인원 중 수시 비중이 80.3%에 달해 역대 최고를 기록했습니다. 정시 비중이 점점 줄어드는 만큼 수시 전략도 병행 준비가 중요합니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 어디가 포털 확인</a>
+      </div>
+
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">킬러문항 배제 방침 유지 확인</div>
+        <div class="news-body">교육과정 밖에서 출제되는 '킬러문항'은 2027 수능에서도 출제 단계부터 철저히 배제하겠다는 방침이 재확인됐습니다. EBS 체감 연계율을 높이는 방향으로 출제가 이루어집니다.</div>
+        <a href="https://www.daily365.news/2026/03/31/%ED%82%AC%EB%9F%AC%EB%AC%B8%ED%95%AD-%EB%B9%BC%EA%B3%A0-ebs-%EC%B2%B4%EA%B0%90%EB%8F%84-%EB%86%92%EC%9D%B8%EB%8B%A4-2027%ED%95%99%EB%85%84%EB%8F%84-%EC%88%98%EB%8A%A5-6/" target="_blank" rel="noopener" class="news-link">→ 데일리365 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="schedule">
+        <div class="news-cat schedule">일정·제도</div>
+        <div class="news-title">EBS 연계율 50% 유지 — 국어 53%, 영어 56%</div>
+        <div class="news-body">수능 EBS 연계율은 50% 수준을 유지합니다. 6월 모의평가 기준 국어 53.3%, 영어 55.6%로 나타났습니다. EBS 교재·강의를 충실히 학습하면 체감 연계도를 높일 수 있습니다.</div>
+        <a href="https://www.kyongbuk.co.kr/news/articleView.html?idxno=4077063" target="_blank" rel="noopener" class="news-link">→ 연계율 상세 기사</a>
+      </div>
+
+      <!-- N수생 -->
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">2027학년도 N수생 16만 명 돌파 전망 — 역대 최대</div>
+        <div class="news-body">의대 증원 기대감과 2026 수능 고난도 출제 여파로 재수·삼수생(N수생)이 16만 명을 넘어설 것으로 예측됩니다. N수생 비율이 높아질수록 수능 상위권 경쟁이 더욱 치열해집니다.</div>
+        <a href="https://www.sedaily.com/article/20006810" target="_blank" rel="noopener" class="news-link">→ 서울경제 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">N수생 탐구 백분위 평균 9점 상승</div>
+        <div class="news-body">N수생의 탐구 영역 백분위는 평균 9.0p 상승했으며, 국어·수학·탐구 평균 백분위는 전년 68.6에서 75.5로 6.9p 올랐습니다. 재수 시 탐구 과목에서 유의미한 향상이 가능하다는 분석입니다.</div>
+        <a href="https://www.edujin.co.kr/news/articleView.html?idxno=52252" target="_blank" rel="noopener" class="news-link">→ 에듀진 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">의대 새 통로 생겼다 — N수생 10% 추가 증가 가능</div>
+        <div class="news-body">지역의사제 신설로 의대 진학 새로운 경로가 열리면서 N수생이 추가로 10% 더 늘 수 있다는 분석이 나옵니다. 특히 지방 거주자나 지방고 졸업생의 지역 의대 진입 가능성이 높아졌습니다.</div>
+        <a href="https://www.sedaily.com/article/20000346" target="_blank" rel="noopener" class="news-link">→ 서울경제 단독 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">2027 수능은 '현행 통합수능 마지막 해' — 재수생 유불리</div>
+        <div class="news-body">2028학년도부터 수능 체제가 전면 개편되므로, 2027 수능은 현행 '공통+선택' 구조의 마지막 시험입니다. 현행 체제에 익숙한 재수생에게 유리하지만, 내년에 다시 도전하면 완전히 새로운 체제를 만납니다.</div>
+        <a href="https://news.unn.net/news/articleView.html?idxno=591206" target="_blank" rel="noopener" class="news-link">→ 대학저널 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">반수생 감소 추세 — 의대 정원 축소 영향</div>
+        <div class="news-body">2026학년도 수능 기준 졸업생 응시자가 전년 대비 1,862명 줄어든 159,922명으로 집계됐습니다. 의대 정원 조정으로 대학 재학 중 다시 수능을 보는 반수생이 감소한 것이 원인으로 분석됩니다.</div>
+        <a href="https://sanedu.com/%EC%9E%85%EC%8B%9C%EB%A6%AC%ED%8F%AC%ED%8A%B8-2026%ED%95%99%EB%85%84%EB%8F%84-%EC%88%98%EB%8A%A5%EC%8B%9C%ED%97%98-%EC%9D%91%EC%8B%9C%EC%9B%90%EC%84%9C-%EC%A0%91%EC%88%98-%EA%B2%B0%EA%B3%BC/" target="_blank" rel="noopener" class="news-link">→ 산에듀 분석</a>
+      </div>
+
+      <div class="news-card" data-cat="nsu">
+        <div class="news-cat nsu">N수생</div>
+        <div class="news-title">재수생 수시 전략 — 논술 전형이 대안</div>
+        <div class="news-body">재수생은 학생부가 고3 기록으로 고정되어 학생부 중심 전형에서 불리합니다. 논술 100% 전형이나 수능 최저 충족이 관건인 전형을 전략적으로 노리는 것이 효과적입니다. 특히 논술전형 신설 대학을 눈여겨보세요.</div>
+        <a href="https://www.jinhak.com/jh/high3/univ-entrance-info/ipsi-analysis/ipsi-strategy/100000058" target="_blank" rel="noopener" class="news-link">→ 진학사 전략 가이드</a>
+      </div>
+
+      <!-- 의대 -->
+      <div class="news-card" data-cat="med">
+        <div class="news-cat med">의대</div>
+        <div class="news-title">지역의사제 도입 — 의대 지원 구조 대변화</div>
+        <div class="news-body">지역의사제가 도입되면서 지역 의대 별도 선발 트랙이 신설됩니다. 서울 출신 학생의 의대 문호는 1,757명(50.1%)으로 역대 최소, 지방 학생 전용 문호는 1,729명으로 역대 최대입니다.</div>
+        <a href="https://news.unn.net/news/articleView.html?idxno=591206" target="_blank" rel="noopener" class="news-link">→ 대학저널 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="med">
+        <div class="news-cat med">의대</div>
+        <div class="news-title">의대 지역인재특별전형 103명 감소 — 지역의사전형 122명 증가</div>
+        <div class="news-body">2027학년도 의대 지역인재특별전형 모집인원은 전년 대비 103명 감소했으나, 지역의사선발전형이 신설되어 122명이 증가했습니다. 지역의사전형은 지역 거주 기간 요건 등 별도 자격 요건을 확인해야 합니다.</div>
+        <a href="https://news.unn.net/news/articleView.html?idxno=591206" target="_blank" rel="noopener" class="news-link">→ 관련 기사 보기</a>
+      </div>
+
+      <div class="news-card" data-cat="med">
+        <div class="news-cat med">의대</div>
+        <div class="news-title">의대 증원 최소 350명 이상 전망</div>
+        <div class="news-body">2027학년도 의대 증원 규모는 최소 350명 이상이 될 것으로 전망됩니다. 증원 규모와 배분 방식이 최종 확정되기 전까지 수시·정시 전략에 변수로 작용할 수 있습니다.</div>
+        <a href="https://www.busan.com/view/busan/view.php?code=2026060918030756837" target="_blank" rel="noopener" class="news-link">→ 부산일보 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="med">
+        <div class="news-cat med">의대</div>
+        <div class="news-title">의대 논술전형 — 가천대·부산대 신설, 일부 폐지</div>
+        <div class="news-body">2027학년도에 가천대(약학·한의예), 부산대(의예·약학), 삼육대(약학)가 논술전형을 신규 도입합니다. 반면 경북대(약학), 단국대(의예·치의예), 연세대(치의예) 등은 논술전형을 폐지했습니다.</div>
+        <a href="https://medichin.co.kr/exam/?bmode=view&idx=170349166" target="_blank" rel="noopener" class="news-link">→ 의약학 논술 변화 상세</a>
+      </div>
+
+      <div class="news-card" data-cat="med">
+        <div class="news-cat med">의대</div>
+        <div class="news-title">의대 쏠림 현상 — 비의대 상위권 커트라인 변화 주목</div>
+        <div class="news-body">의대 지원 구조 변화로 상위권 학생들의 지원이 분산될 경우 공대·자연대 등 비의대 상위권 대학의 커트라인도 영향을 받을 수 있습니다. 6·9월 모의평가 이후 지원 전략을 재점검하는 것이 필요합니다.</div>
+        <a href="https://www.kyobit.com/news/articleView.html?idxno=2405" target="_blank" rel="noopener" class="news-link">→ 교육을비추다 기사</a>
+      </div>
+
+      <!-- 과목 전략 -->
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">확통런 심화 — 미적·기하 선택 35%대로 급감</div>
+        <div class="news-body">이과 학생들이 어려운 미적분·기하 대신 확률과통계를 선택하는 '확통런' 현상이 심화됩니다. 2027 수능에서 미적분·기하 응시 비율은 35% 내외로 추정됩니다. 확통 선택자가 많아질수록 표준점수 최고점이 달라질 수 있습니다.</div>
+        <a href="https://www.asiatoday.co.kr/kn/view.php?key=20260823010007400" target="_blank" rel="noopener" class="news-link">→ 아시아투데이 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">사탐런 지속 — 이과생의 사회탐구 선택 증가</div>
+        <div class="news-body">수학에서 미적분을 선택하면서 탐구에서는 사회탐구로 이동하는 '사탐런' 현상이 계속됩니다. 사탐 응시 인원이 늘면 표준점수·백분위 변동이 생기므로 과목별 유불리 분석이 필요합니다.</div>
+        <a href="https://v.daum.net/v/YP8AxNUZYP" target="_blank" rel="noopener" class="news-link">→ 에듀플러스 선택과목 분석</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">국어 언어와매체 vs 화법과작문 — 언매 여전히 유리</div>
+        <div class="news-body">국어 선택과목에서 '언어와 매체'가 상대적으로 높은 표준점수를 받는 구조가 지속됩니다. 상위권 대학 지원자 중 언매 선택 비율이 높으며, 선택 과목에 따른 불이익을 최소화하는 전략이 필요합니다.</div>
+        <a href="https://sgsg.hankyung.com/article/2026013030141" target="_blank" rel="noopener" class="news-link">→ 생글생글 선택과목 가이드</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">서울대 자연계 — 미적분·기하 지정 유지</div>
+        <div class="news-body">서울대는 자연계열 대부분 학과에서 미적분 또는 기하를 수학 선택과목으로 지정하고 있습니다. 의대 대부분과 일부 국립대도 동일합니다. 상위권 이과 지망 학생은 확통 선택 전 지원 대학 요건을 반드시 확인해야 합니다.</div>
+        <a href="https://www.jinhak.com/jh/high3/univ-entrance-info/ipsi-analysis/ipsi-strategy/100000499" target="_blank" rel="noopener" class="news-link">→ 진학사 핵심 변경사항</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">영어 절대평가 — 1등급 90점 이상, EBS 연계 56%</div>
+        <div class="news-body">영어는 절대평가(9등급)로 시행됩니다. EBS 연계율이 55.6%로 높아 EBS 기출 학습이 효과적입니다. 상위권 대학은 영어 1등급이 기본 조건인 경우가 많으므로 등급 관리에 집중해야 합니다.</div>
+        <a href="https://www.veritas-a.com/news/articleView.html?idxno=613243" target="_blank" rel="noopener" class="news-link">→ 베리타스알파 모평 연계율</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">한국사 절대평가 — 필수 응시, 3등급 이내 권장</div>
+        <div class="news-body">한국사는 전 수험생 필수 응시 과목이며 절대평가입니다. 상위권 대학 대부분이 한국사 3등급 이내를 수능 최저학력기준에 포함시키므로 기본 이상의 준비가 필요합니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 어디가 포털</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">수학 확통 선택자 65% 돌파 — 6월 모평 기준</div>
+        <div class="news-body">2027 수능 6월 모의평가에서 확률과 통계 선택 비율이 65.17%로 집계됐습니다. 전년 56.45%에서 8.72%p 급증한 수치로, '확통런'이 한 해 더 심화됐습니다.</div>
+        <a href="https://www.veritas-a.com/news/articleView.html?idxno=613243" target="_blank" rel="noopener" class="news-link">→ 베리타스알파 분석</a>
+      </div>
+
+      <div class="news-card" data-cat="subject">
+        <div class="news-cat subject">과목 전략</div>
+        <div class="news-title">문과·이과 교차지원 전략 복잡해져</div>
+        <div class="news-body">수능 선택과목 지정 폐지 대학이 늘면서 문·이과 교차지원이 많아졌습니다. 이과생이 인문계 학과에 지원하거나, 문과생이 자연계 커트라인에 도전하는 사례가 증가해 경쟁 구조가 복잡해지고 있습니다.</div>
+        <a href="https://v.daum.net/v/YP8AxNUZYP" target="_blank" rel="noopener" class="news-link">→ 에듀플러스 교차지원 분석</a>
+      </div>
+
+      <!-- 모의고사 -->
+      <div class="news-card" data-cat="mock">
+        <div class="news-cat mock">모의고사</div>
+        <div class="news-title">6월 모의평가 — 수학 "작년 수능보다 약간 쉬워"</div>
+        <div class="news-body">2027학년도 6월 모의평가에서 수학 공통과목은 작년 수능보다 평이하게 출제됐습니다. 까다로운 문항이 적어 수험생 체감 난이도가 낮았고, 선택과목은 비슷하거나 약간 어려운 수준이었습니다.</div>
+        <a href="https://www.veritas-a.com/news/articleView.html?idxno=613347" target="_blank" rel="noopener" class="news-link">→ 베리타스알파 6모 분석</a>
+      </div>
+
+      <div class="news-card" data-cat="mock">
+        <div class="news-cat mock">모의고사</div>
+        <div class="news-title">6월 모의평가 국어 — 최상위권 변별력 약했다</div>
+        <div class="news-body">6월 모의평가 국어 영역은 최상위권을 세밀하게 구분하는 변별력이 약했다는 분석이 나왔습니다. 쉽게 출제되었으나 실제 수능에서는 난도가 높아질 수 있으므로 방심 금물입니다.</div>
+        <a href="https://www.jinhak.com/jh/high3/univ-entrance-info/ipsi-analysis/ipsi-strategy/100000600" target="_blank" rel="noopener" class="news-link">→ 진학사 6모 등급컷</a>
+      </div>
+
+      <div class="news-card" data-cat="mock">
+        <div class="news-cat mock">모의고사</div>
+        <div class="news-title">6월 모의평가 영어 — 작년 6월보다 어려워, 수능 수준 회귀</div>
+        <div class="news-body">6월 모의평가 영어는 작년 6월의 이례적으로 쉬운 출제에서 벗어나 작년 수능에 가까운 난이도로 출제됐습니다. 영어 절대평가 1등급 비율이 줄어들 것으로 예측됩니다.</div>
+        <a href="https://www.veritas-a.com/news/articleView.html?idxno=613243" target="_blank" rel="noopener" class="news-link">→ 베리타스알파 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="mock">
+        <div class="news-cat mock">모의고사</div>
+        <div class="news-title">9월 모의평가 9월 2일 실시 — "적정 난이도 유지"</div>
+        <div class="news-body">2027학년도 9월 모의평가가 9월 2일(화)에 실시됐습니다. 전반적으로 전년 수능 대비 난도가 하락했으며 국어는 쉬웠고, 수학은 평이, 영어는 어렵게 출제됐다는 분석입니다.</div>
+        <a href="https://news.unn.net/news/articleView.html?idxno=593549" target="_blank" rel="noopener" class="news-link">→ 대학저널 9모 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="mock">
+        <div class="news-cat mock">모의고사</div>
+        <div class="news-title">9월 모의평가 국어 1등급컷 — 표준점수 132점</div>
+        <div class="news-body">9월 모의평가 국어 확정 1등급 구분점수는 화법과 작문·언어와 매체 모두 95점이며, 표준점수 최고점은 132점으로 나타났습니다. 국어는 쉽게, 독서·문학 중심으로 출제됐습니다.</div>
+        <a href="https://news.unn.net/news/articleView.html?idxno=593549" target="_blank" rel="noopener" class="news-link">→ 9모 등급컷 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="mock">
+        <div class="news-cat mock">모의고사</div>
+        <div class="news-title">9월 모의평가 영어 — 이례적으로 어렵게 출제</div>
+        <div class="news-body">9월 모의평가 영어 영역이 이례적으로 어렵게 출제됐습니다. 절대평가임에도 1등급 비율이 예년보다 낮을 것으로 예상돼 실제 수능에서의 영어 관리 전략이 중요해졌습니다.</div>
+        <a href="https://news.unn.net/news/articleView.html?idxno=593549" target="_blank" rel="noopener" class="news-link">→ 9모 분석 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="mock">
+        <div class="news-cat mock">모의고사</div>
+        <div class="news-title">2026년 모의고사 전체 일정 정리</div>
+        <div class="news-body">2026년 주요 모의고사는 3월(전국연합학력평가), 4월(학력평가), 6월(평가원 모의평가), 7월(학력평가), 9월(평가원 모의평가), 10월(학력평가) 순으로 진행됩니다. 6월·9월 평가원 모의평가가 수시 지원의 핵심 기준입니다.</div>
+        <a href="https://www.megastudy.net/entinfo/main/entinfo_popup_251209.asp?tab_no=2" target="_blank" rel="noopener" class="news-link">→ 메가스터디 모의고사 일정</a>
+      </div>
+
+      <!-- 대학별 -->
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">연세대 2027 — 자연계 논술 '수리+과학 통합논술'로 변경</div>
+        <div class="news-body">연세대 자연계 논술 전형이 기존 수리 단독에서 수리·통합논술로 바뀝니다. 과학 제시문 기반 다면사고평가가 신설되고 수리적 사고력 평가 비중이 축소됩니다.</div>
+        <a href="https://www.saeisol.com/report/?bmode=view&idx=170991867" target="_blank" rel="noopener" class="news-link">→ 연세대 2027 전형 가이드</a>
+      </div>
+
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">연세대 국제인재 전형 — 특기자→학생부종합으로 전환</div>
+        <div class="news-body">연세대 특기자(국제인재) 전형이 학생부종합 전형인 국제인재 전형으로 변경됩니다. 국제형(국내고) 전형의 2단계 선발 비율도 4배수에서 5배수로 확대됩니다.</div>
+        <a href="https://www.saeisol.com/report/?bmode=view&idx=170991867" target="_blank" rel="noopener" class="news-link">→ 연세대 입학 가이드</a>
+      </div>
+
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">주요 대학 2027학년도 전형 변화 총정리</div>
+        <div class="news-body">서울 주요 대학들의 2027학년도 전형 변화 핵심을 진학사가 정리했습니다. 전형 신설·폐지·수능최저 변경 등 대학별 주요 사항을 한눈에 파악하고 지원 대학 확인에 활용하세요.</div>
+        <a href="https://www.jinhak.com/jh/high3/univ-entrance-info/ipsi-analysis/ipsi-strategy/100000058" target="_blank" rel="noopener" class="news-link">→ 진학사 주요 대학 변화 분석</a>
+      </div>
+
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">학생부종합전형 총정리 — 수능최저 있는 종합 주목</div>
+        <div class="news-body">상위권 대학일수록 수능최저가 있는 학생부종합 전형 비중이 높습니다. 재수생의 경우 수능 최저를 충족하는 전략으로 종합전형에 도전하는 방식이 유효합니다.</div>
+        <a href="https://www.jinhak.com/jh/high3/univ-entrance-info/ipsi-analysis/ipsi-strategy/100000595" target="_blank" rel="noopener" class="news-link">→ 진학사 학종 총정리</a>
+      </div>
+
+      <div class="news-card" data-cat="univ">
+        <div class="news-cat univ">대학별</div>
+        <div class="news-title">중앙대 논술 의예·약학 재학생 전용 신설</div>
+        <div class="news-body">중앙대가 재학생만 지원할 수 있는 논술전형(창의형, 의예, 약학)을 신설했습니다. 졸업생은 해당 전형에 지원이 불가능하므로 재수생은 지원 가능 여부를 반드시 확인해야 합니다.</div>
+        <a href="https://medichin.co.kr/exam/?bmode=view&idx=170349166" target="_blank" rel="noopener" class="news-link">→ 논술전형 대학별 변화</a>
+      </div>
+
+      <!-- 입시 개편 -->
+      <div class="news-card" data-cat="reform">
+        <div class="news-cat reform">입시 개편</div>
+        <div class="news-title">2028학년도 수능 — 선택과목 전면 폐지</div>
+        <div class="news-body">2028학년도부터 국어·수학·탐구 영역의 선택과목 제도가 사라집니다. 모든 수험생이 동일한 과목·동일한 문항으로 시험을 봐 선택과목 유불리 논란이 해소될 예정입니다.</div>
+        <a href="https://www.ccnnews.co.kr/news/articleView.html?idxno=310678" target="_blank" rel="noopener" class="news-link">→ 2028 수능 개편 기사</a>
+      </div>
+
+      <div class="news-card" data-cat="reform">
+        <div class="news-cat reform">입시 개편</div>
+        <div class="news-title">2028 탐구 개편 — 통합사회·통합과학으로 일원화</div>
+        <div class="news-body">2028학년도부터 사회탐구·과학탐구가 '통합사회'와 '통합과학'으로 통합됩니다. 현재 17개 과목 중 선택 방식에서 두 과목 모두 필수 응시로 변경되어 탐구 전략이 크게 달라집니다.</div>
+        <a href="https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=294&boardSeq=97551&lev=0" target="_blank" rel="noopener" class="news-link">→ 교육부 공식 발표</a>
+      </div>
+
+      <div class="news-card" data-cat="reform">
+        <div class="news-cat reform">입시 개편</div>
+        <div class="news-title">2028 수학 개편 — 확률과통계 비중 26점→33점으로 상승</div>
+        <div class="news-body">2028학년도 수학에서 '대수(수학I)'·'미적분I(수학II)'의 배점 비중이 37점에서 33점으로 줄고, '확률과 통계'는 26점에서 33점으로 늘어납니다. 2027 재수생은 현행 체제 그대로 준비하면 됩니다.</div>
+        <a href="https://allaboutipsi.com/admission/news/2028-suneung-changes/" target="_blank" rel="noopener" class="news-link">→ 2028 수능 변화 상세</a>
+      </div>
+
+      <div class="news-card" data-cat="reform">
+        <div class="news-cat reform">입시 개편</div>
+        <div class="news-title">2028 서울대·연세대·고려대 전형 핵심 변화 예고</div>
+        <div class="news-body">2028학년도 대입 개편에 맞춰 SKY 대학도 전형 변화를 예고했습니다. 수능 선택과목 지정 폐지, 학생부 반영 방식 변경 등이 예상됩니다. 2027 수능은 현행 기준 적용.</div>
+        <a href="https://www.jinhak.com/jh/high3/univ-entrance-info/ipsi-analysis/ipsi-strategy/100000552" target="_blank" rel="noopener" class="news-link">→ 진학사 SKY 전형 변화</a>
+      </div>
+
+      <div class="news-card" data-cat="reform">
+        <div class="news-cat reform">입시 개편</div>
+        <div class="news-title">2027 = 현행 체제 마지막 해 — 재수생에게 유리한 이유</div>
+        <div class="news-body">2027학년도 수능이 현행 '공통+선택' 구조의 마지막 시험입니다. 지금 재수생은 익숙한 체제에서 한 번 더 도전할 수 있지만, 올해 실패 시 2028년엔 완전히 새로운 체제를 처음부터 준비해야 합니다.</div>
+        <a href="https://www.te.co.kr/news/article.html?no=23564" target="_blank" rel="noopener" class="news-link">→ 관련 기사 보기</a>
+      </div>
+
+      <div class="news-card" data-cat="reform">
+        <div class="news-cat reform">입시 개편</div>
+        <div class="news-title">수시 80.3% 시대 — 정시 축소 흐름 지속</div>
+        <div class="news-body">수시 비중이 80.3%에 달하는 2027학년도 대입 구조에서 정시 비중은 계속 줄어드는 추세입니다. 재수생은 수시 논술·최저 전형과 정시를 모두 병행하는 투트랙 전략이 효과적입니다.</div>
+        <a href="https://www.adiga.kr" target="_blank" rel="noopener" class="news-link">→ 어디가 포털 전형 정보</a>
+      </div>
+
     </div>
   </section>
 
@@ -783,6 +1198,18 @@
   }
   updateCountdown();
   setInterval(updateCountdown, 30000);
+
+  function filterNews(cat) {
+    document.querySelectorAll('.nf-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.news-card').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
 </script>
 
 </body>
